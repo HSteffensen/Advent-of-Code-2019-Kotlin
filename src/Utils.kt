@@ -1,13 +1,18 @@
 import java.io.File
-import java.math.BigInteger
-import java.security.MessageDigest
 
 /**
  * Reads lines from the given input txt file.
  */
 fun readInput(name: String) = File("src", "$name.txt").readLines()
 
-/**
- * Converts string to md5 hash.
- */
-fun String.md5(): String = BigInteger(1, MessageDigest.getInstance("MD5").digest(toByteArray())).toString(16)
+fun intcodeInput(input: List<String>) = intcodeInput(input.single())
+fun intcodeInput(input: String) = input.split(',').map { it.toInt() }
+
+inline fun <reified T> finalAnswerIsNotWrong(answer: T, wrongAnswers: List<T>): T =
+    answer
+        .also {
+            check(!wrongAnswers.contains(it)) { "Wrong answer: $answer" }
+        }
+
+inline fun <reified T> testAnswer(answer: T, expectedAnswer: T) =
+    check(answer == expectedAnswer) { "wrong test. expected: $expectedAnswer, got: $answer" }
