@@ -8,13 +8,13 @@ import testAnswer
 import kotlin.system.measureTimeMillis
 
 fun main() {
-    fun part1(input: List<Int>): Int =
+    fun part1(input: List<Long>): Long =
         Computer(input).runWithInput(1).output.toList()
-            .single { it != 0 }
+            .single { it != 0L }
 
-    fun part2(input: List<Int>): Int =
+    fun part2(input: List<Long>): Long =
         Computer(input).runWithInput(5).output.toList()
-            .single { it != 0 }
+            .single { it != 0L }
 
 
 

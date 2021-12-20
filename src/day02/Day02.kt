@@ -8,17 +8,17 @@ import testAnswer
 import kotlin.system.measureTimeMillis
 
 fun main() {
-    fun part1(input: List<Int>): Int =
-        Computer(input).run().program[0]
+    fun part1(input: List<Long>): Long =
+        Computer(input).run().program[0]!!
 
-    fun part2(input: List<Int>): Int {
-        (0..99).forEach { noun ->
-            (0..99).forEach { verb ->
+    fun part2(input: List<Long>): Long {
+        (0L..99L).forEach { noun ->
+            (0L..99L).forEach { verb ->
                 if (part1(input.mapIndexed { index, i -> when (index) {
                         1 -> noun
                         2 -> verb
                         else -> i
-                    } }) == 19690720)
+                    } }) == 19690720L)
                     return (100 * noun) + verb
             }
         }
