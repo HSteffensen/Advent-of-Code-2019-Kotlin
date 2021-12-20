@@ -39,14 +39,14 @@ class Computer(
         when (mode) {
             0 -> program.getOrDefault(program.getOrDefault(position, 0), 0)
             1 -> program.getOrDefault(position, 0)
-            2 -> program.getOrDefault(relativeBase + position, 0)
+            2 -> program.getOrDefault(relativeBase + program.getOrDefault(position, 0), 0)
             else -> throw IllegalStateException("Illegal GET mode: $mode")
         }
 
     private fun setValueAt(position: Long, mode: Int, value: Long) {
         when (mode) {
             0 -> program[program.getOrDefault(position, 0)] = value
-            2 -> program[relativeBase + position] = value
+            2 -> program[relativeBase + program.getOrDefault(position, 0)] = value
             else -> throw IllegalStateException("Illegal SET mode: $mode")
         }
 
@@ -103,7 +103,7 @@ class Computer(
             }
             9 -> {
                 relativeBase += getArg(1)
-                pointer + 2.also { println(relativeBase) }
+                pointer + 2
             }
             else -> TODO()
         }
